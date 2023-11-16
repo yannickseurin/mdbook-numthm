@@ -1,8 +1,8 @@
 use clap::{crate_version, Arg, ArgMatches, Command};
-use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
 use mdbook::errors::{Error, Result};
-use semver::{Version, VersionReq};
+use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
 use mdbook_numthm::NumThmPreprocessor;
+use semver::{Version, VersionReq};
 use std::io;
 
 /// Parse CLI options.
@@ -49,7 +49,7 @@ fn handle_supports(sub_args: &ArgMatches) -> Result<()> {
     let pre = NumThmPreprocessor::default();
 
     let supported = pre.supports_renderer(renderer);
-    
+
     if supported {
         Ok(())
     } else {
