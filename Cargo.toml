@@ -1,0 +1,23 @@
+[package]
+name = "mdbook-numthm"
+authors = ["Yannick Seurin"]
+version = "0.1.0"
+edition = "2021"
+description = "An mdbook preprocessor that provides numbered theorems, lemmas, etc."
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/yannickseurin/mdbook-numthm"
+repository = "https://github.com/yannickseurin/mdbook-numthm"
+keywords = ["mdbook", "preprocessor", "katex"]
+
+[dependencies]
+clap = "4.4.7"
+env_logger = "0.10.0"
+lazy_static = "1.4.0"
+log = "0.4.20"
+mdbook = "0.4.35"
+pathdiff = "0.2.1"
+regex = "1.10.2"
+semver = "1.0.20"
+serde_json = "1.0.108"
+toml = "0.5.11"
