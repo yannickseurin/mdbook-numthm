@@ -229,7 +229,7 @@ fn find_and_replace_refs(
     .to_string()
 }
 
-/// computes the relative path from the folder containing `chap_path` to the file `path_to_ref`  
+/// computes the relative path from the folder containing `chap_path` to the file `path_to_ref`
 fn compute_rel_path(chap_path: &PathBuf, path_to_ref: &PathBuf) -> String {
     if chap_path == path_to_ref {
         return "".to_string();
