@@ -1,3 +1,5 @@
+//! An [mdBook](https://github.com/rust-lang/mdBook) preprocessor for automatically numbering theorems, lemmas, etc.
+
 use log::warn;
 use mdbook::book::{Book, BookItem};
 use mdbook::errors::Result;
@@ -7,35 +9,35 @@ use regex::Regex;
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 
-/// the preprocessor name
+/// The preprocessor name.
 const NAME: &str = "numthm";
 
-/// an environment handled by the preprocessor
+/// An environment handled by the preprocessor.
 struct Env {
-    /// the key to match to detect the environment, e.g. "thm"
+    /// The key to match to detect the environment, e.g. "thm".
     key: String,
-    /// the name to display in the header, e.g. "Theorem"
+    /// The name to display in the header, e.g. "Theorem".
     name: String,
-    /// the markdown emphasis delimiter to apply to the header, e.g. "**" for bold
+    /// The markdown emphasis delimiter to apply to the header, e.g. "**" for bold.
     emph: String,
 }
 
-/// a preprocessor for automatically numbering theorems, lemmas, etc.
+/// A preprocessor for automatically numbering theorems, lemmas, etc.
 pub struct NumThmPreprocessor {
-    /// the list of environments handled by the preprocessor
+    /// The list of environments handled by the preprocessor.
     envs: Vec<Env>,
-    ///whether theorem numbers must be prefixed by the section number
+    /// Whether theorem numbers must be prefixed by the section number.
     with_prefix: bool,
 }
 
-/// the `LabelInfo` structure contains information for formatting the hyperlink to a specific theorem, lemma, etc.
+/// The `LabelInfo` structure contains information for formatting the hyperlink to a specific theorem, lemma, etc.
 #[derive(Debug, PartialEq)]
 struct LabelInfo {
-    /// the "numbered name" associated with the label, e.g. "Theorem 1.2.1"
+    /// The "numbered name" associated with the label, e.g. "Theorem 1.2.1".
     num_name: String,
-    /// the path to the file containing the environment with the label
+    /// The path to the file containing the environment with the label.
     path: PathBuf,
-    /// an optional title
+    /// An optional title.
     title: Option<String>,
 }
 
@@ -134,9 +136,9 @@ impl Preprocessor for NumThmPreprocessor {
     }
 }
 
-/// finds all "environment" patterns {{env.key}}{label}[title] and replaces them with a header (including the title if provided)
+/// Finds all "environment" patterns {{key}}{label}\[title\] and replaces them with a header (including the title if provided)
 /// and potentially an anchor if a label is provided;
-/// if a label is provided, it updates the hashmap `refs` with an entry (label, LabelInfo) allowing to format links to the theorem
+/// if a label is provided, it updates the hashmap `refs` with an entry (label, LabelInfo) allowing to format links to the theorem.
 fn find_and_replace_envs(
     s: &str,
     prefix: &str,
@@ -194,8 +196,8 @@ fn find_and_replace_envs(
     .to_string()
 }
 
-/// finds and replaces all patterns {{ref: label}} where label is an existing key in hashmap `refs`
-/// with link towards the relevant theorem
+/// Finds and replaces all patterns {{ref: label}} where label is an existing key in hashmap `refs`
+/// with link towards the relevant theorem.
 fn find_and_replace_refs(
     s: &str,
     chap_path: &PathBuf,
@@ -229,7 +231,7 @@ fn find_and_replace_refs(
     .to_string()
 }
 
-/// computes the relative path from the folder containing `chap_path` to the file `path_to_ref`
+/// Computes the relative path from the folder containing `chap_path` to the file `path_to_ref`.
 fn compute_rel_path(chap_path: &PathBuf, path_to_ref: &PathBuf) -> String {
     if chap_path == path_to_ref {
         return "".to_string();

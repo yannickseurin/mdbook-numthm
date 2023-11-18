@@ -6,6 +6,7 @@ edition = "2021"
 description = "An mdbook preprocessor that provides numbered theorems, lemmas, etc."
 license = "MIT"
 readme = "README.md"
+documentation = "https://docs.rs/mdbook-numthm"
 homepage = "https://github.com/yannickseurin/mdbook-numthm"
 repository = "https://github.com/yannickseurin/mdbook-numthm"
 keywords = ["mdbook", "preprocessor", "katex"]
