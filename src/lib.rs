@@ -136,9 +136,11 @@ impl Preprocessor for NumThmPreprocessor {
     }
 }
 
-/// Finds all "environment" patterns {{key}}{label}\[title\] and replaces them with a header (including the title if provided)
-/// and potentially an anchor if a label is provided;
-/// if a label is provided, it updates the hashmap `refs` with an entry (label, LabelInfo) allowing to format links to the theorem.
+/// Finds all patterns `{{key}}{mylabel}[mytitle]` where `key` is the key field of `env` (e.g. `thm`)
+/// and replaces them with a header (including the title if a title `mytitle` is provided)
+/// and potentially an anchor if a label `mylabel` is provided;
+/// if a label is provided, it updates the hashmap `refs` with an entry (label, LabelInfo)
+/// allowing to format links to the theorem.
 fn find_and_replace_envs(
     s: &str,
     prefix: &str,
@@ -197,7 +199,7 @@ fn find_and_replace_envs(
 }
 
 /// Finds and replaces all patterns {{ref: label}} where label is an existing key in hashmap `refs`
-/// with link towards the relevant theorem.
+/// with a link towards the relevant theorem.
 fn find_and_replace_refs(
     s: &str,
     chap_path: &PathBuf,

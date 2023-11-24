@@ -11,7 +11,7 @@ You can see it in action [here](https://github.com/yannickseurin/crypto-book).
 Assuming you have mdBook and [mdbook-katex](https://github.com/lzanini/mdbook-katex) installed, install the crate with
 
 ```console
-$ cargo install --git https://github.com/yannickseurin/mdbook-numthm
+$ cargo install mdbook-numthm
 ```
 
 Then add it as a preprocessor to your `book.toml`:
