@@ -37,6 +37,7 @@ into an anchor identified by `label` followed by a header consisting of the name
 
 Fields `label` and `title` are optional.
 If no label is provided, then no anchor will be created, and if no title is provided, then no title will be displayed in the header.
+If a label already exists, it will ignore it and emit a warning.
 
 For example, for the "theorem" environment, the key is `thm`, the name is `Theorem`, and the emphasis of the header is bold.
 Hence, this:
@@ -79,6 +80,8 @@ which will be replaced by
 ```text
 [Central Limit Theorem](path/to/file.md#label)
 ```
+
+If the label does not exist, it will replace the ref with **[??]** and emit a warning.
 
 ## Configuration
 
