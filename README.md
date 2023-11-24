@@ -1,5 +1,8 @@
 # mdbook-numthm
 
+[![Crates.io](https://img.shields.io/crates/v/mdbook-numthm)](https://crates.io/crates/mdbook-numthm)
+[![GitHub License](https://img.shields.io/github/license/yannickseurin/mdbook-numthm)](https://github.com/yannickseurin/mdbook-numthm/blob/main/LICENSE)
+
 An [mdBook](https://github.com/rust-lang/mdBook) preprocessor for automatically numbering theorems, lemmas, etc.
 
 If you're used to writing maths with LaTeX, using mdbook might be frustrating if you plan to have a lot of theorems, lemmas, definitions, etc. that you'd like to automatically number and later link to. This preprocessor kind of provides what the [amsthm](https://www.ctan.org/pkg/amsthm) package does for LaTeX.
@@ -35,7 +38,7 @@ into an anchor identified by `label` followed by a header consisting of the name
 Fields `label` and `title` are optional.
 If no label is provided, then no anchor will be created, and if no title is provided, then no title will be displayed in the header.
 
-For example, for theorems the key is `thm`, the name is `Theorem`, and the emphasis of the header is bold.
+For example, for the "theorem" environment, the key is `thm`, the name is `Theorem`, and the emphasis of the header is bold.
 Hence, this:
 
 ```text
@@ -48,6 +51,10 @@ will become (assuming this is the first occurrence of the key `thm`)
 <a name="thm:central_limit"></a>
 **Theorem 1 (Central Limit Theorem).**
 ```
+
+and will be rendered as
+
+> **Theorem 1 (Central Limit Theorem).**
 
 All environments that received a label can be referred to by creating a link using
 
@@ -94,25 +101,23 @@ For example,
 {{lem}}
 ```
 
-will become
+will yield
 
-```text
-**Theorem 1.**
-**Lemma 1.**
-**Lemma 2.**
-**Theorem 2.**
-**Lemma 3.**
-```
+> **Theorem 1.**  
+> **Lemma 1.**  
+> **Lemma 2.**  
+> **Theorem 2.**  
+> **Lemma 3.**
 
 There is a single configurable option
 
 ```toml
 [preprocessor.numthm]
-prefix : bool
+prefix = bool
 ```
 
 If `prefix` is set to true, the environment numbers will be prefixed by the section number.
-For example, in Chapter 1.2, theorems would get numbered 1.2.1, 1.2.2, etc.
+For example, in Chapter 1.2, theorems will get numbered 1.2.1, 1.2.2, etc.
 
 ## TODO
 
