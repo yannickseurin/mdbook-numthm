@@ -97,6 +97,12 @@ impl Default for NumThmPreprocessor {
             emph: "*".to_string(),
         };
 
+        let med: Env = Env {
+            key: "med".to_string(),
+            name: "Method".to_string(),
+            emph: "*".to_string(),
+        };
+
         let fig: Env = Env {
             key: "fig".to_string(),
             name: "Figure".to_string(),
@@ -104,7 +110,7 @@ impl Default for NumThmPreprocessor {
         };
 
         Self {
-            envs: vec![thm, lem, prop, def, rem, exp, prf, fig],
+            envs: vec![thm, lem, prop, def, rem, exp, prf, med, fig],
             with_prefix: false,
         }
     }
