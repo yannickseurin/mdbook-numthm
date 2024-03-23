@@ -49,6 +49,20 @@ impl NumThmPreprocessor {
             pre.with_prefix = *b;
         }
 
+        if let Some(toml::Value::Array(array)) = ctx.config.get("preprocessor.numthm.custom_environments") {
+            for array_entry in array {
+                if let toml::Value::Array(env_params) = array_entry {
+                    if let [toml::Value::String(key), toml::Value::String(name), toml::Value::String(emph)] = &env_params[0..3] {
+                        pre.envs.push(Env {
+                            key: key.to_string(),
+                            name: name.to_string(),
+                            emph: emph.to_string(),
+                        })
+                    }
+                }
+            }
+        }
+
         pre
     }
 }

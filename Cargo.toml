@@ -1,7 +1,7 @@
 [package]
 name = "mdbook-numthm"
 authors = ["Yannick Seurin"]
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 description = "An mdbook preprocessor for automatically numbering theorems, lemmas, etc."
 license = "MIT"
