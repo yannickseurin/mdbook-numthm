@@ -118,8 +118,8 @@ Moreover, the counter for each environment is reset at the beginning of each (su
 
 ## Custom Environments
 
-It is possible to define new environments through the `custom_environments` key of the toml.
-Each new environment is specified by an array `[env_key, env_name, env_emph]`, where `env_key`, `env_name`, and `env_emph` are three strings specifying the environment key, the environment name, and the environment emphasis (more specifically, the string that will be added before and after the environment heahder, e.g. `**` for bold), as defined above.
+It is possible to define new environments through the `custom_environments` key of `book.toml`.
+Each new environment is specified by an array `[env_key, env_name, env_emph]`, where `env_key`, `env_name`, and `env_emph` are three strings specifying the environment key, the environment name, and the environment emphasis (more specifically, the string that will be added before and after the environment header, e.g. `**` for bold), as defined above.
 The value of the `custom_environments` must be an array of such environment-defining arrays.
 
 Consider for example the following configuration:
@@ -135,7 +135,7 @@ custom_environments = [
 It defines two new environments:
 
 - a "conjecture" environment with key `conj`, name "Conjecture", and italic emphasis,
-- an "axiom" environment with key `ax`, name "Axiom", and bold emphasis 
+- an "axiom" environment with key `ax`, name "Axiom", and bold emphasis.
 
 ## Configuration
 
