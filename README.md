@@ -108,34 +108,38 @@ For example,
 
 will yield
 
-> **Theorem 1.**  
-> **Lemma 1.**  
-> **Lemma 2.**  
-> **Theorem 2.**  
+> **Theorem 1.**
+> **Lemma 1.**
+> **Lemma 2.**
+> **Theorem 2.**
 > **Lemma 3.**
 
 Moreover, the counter for each environment is reset at the beginning of each (sub)chapter.
 
 ## Custom Environments
+It is possible to define or change environments through the `environments` table `numthm` in `book.toml`.
 
-It is possible to define new environments through the `custom_environments` key of `book.toml`.
-Each new environment is specified by an array `[env_key, env_name, env_emph]`, where `env_key`, `env_name`, and `env_emph` are three strings specifying the environment key, the environment name, and the environment emphasis (more specifically, the string that will be added before and after the environment header, e.g. `**` for bold), as defined above.
-The value of the `custom_environments` must be an array of such environment-defining arrays.
+Each new environment is specified by an entry of the form `key = {name = "name", emph = "*"}`, where
+- `key` specifies the environment key
+- `name` specifies the environment name
+- `emph` specifies the environment emphasis. More specifically: the string that will be added before and after the environment header, e.g. `**` for bold.
 
 Consider for example the following configuration:
 
 ```toml
-[preprocessor.numthm]
-custom_environments = [
-  ["conj", "Conjecture", "*"],
-  ["ax", "Axiom", "**"]
-]
+[preprocessor.numthm.environments]
+conj = {name = "Conjecture", emph = "*"}
+ax = {name = "Axiom", emph = "**"}
+thm = {emph = "*"}    # redefine a builtin
+lem = {ignore = true} # ignore parsing an environment (builtin or not)
 ```
 
-It defines two new environments:
+It does the following:
 
-- a "conjecture" environment with key `conj`, name "Conjecture", and italic emphasis,
-- an "axiom" environment with key `ax`, name "Axiom", and bold emphasis.
+- define a new "conjecture" environment with key `conj`, name "Conjecture", and italic emphasis,
+- define a new "axiom" environment with key `ax`, name "Axiom", and bold emphasis,
+- redefine the builtin "theorem" environment by changing emphasis to italic,
+- instruct the preprocessor to ignore all "lemma" environments.
 
 ## Configuration
 
